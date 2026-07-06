@@ -6,7 +6,7 @@
 |---------|------|
 | **Business Owner** | Sanchez, Fran |
 | **Product Owner** | Dervis |
-| **预计上线时间** | 8/15 |
+| **预计上线时间** | 7/31 |
 | **当前状态** | Vendor 开发中 |
 | **优先级** | 🔴 High（紧急） |
 

@@ -4,8 +4,8 @@
 
 | 项目属性 | 详情 |
 |---------|------|
-| **Business Owner** | Chengheng |
-| **Product Owner** | Songjun |
+| **Business Owner** | Songjun |
+| **Product Owner** | Nicolas |
 | **截止日期** | 2026/7/14 |
 | **当前状态** | Additional 需求开发中 |
 | **优先级** | 🔴 High（紧急） |

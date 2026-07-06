@@ -5,7 +5,7 @@
 | 项目属性 | 详情 |
 |---------|------|
 | **Business Owner** | 待补充 |
-| **Product Owner** | 待补充 |
+| **Product Owner** | SK-II: Nicolas \| One Code: Erica |
 | **截止日期** | SK-II: 7/7 | One Code: 7/20 |
 | **当前状态** | SK-II: UAT中 | One Code: 配置中 |
 | **优先级** | 🔴 High |
@@ -15,14 +15,8 @@
 | 角色类型 | 人员/团队 |
 |---------|----------|
 | **Profile** | Data Product Owner |
+| **Product Owner** | SK-II: Nicolas \| One Code: Erica |
 | **开发资源** | 自己 |
-
-## 技术栈
-
-| 技术 | 用途 | 版本/工具 |
-|------|------|----------|
-| **SQL** | 数据查询与转换 | - |
-| **Databricks** | 数据处理平台 | - |
 
 ## 项目概述
 
