@@ -1,0 +1,88 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
+  <diagram name="Business Architecture" id="mdm-pim-subset-business-architecture">
+    <mxGraphModel dx="1678" dy="1029" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="0" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="outcome" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#666666;fontSize=13;align=center;verticalAlign=middle;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="46" y="194" width="1492" height="693" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="MDM-Centric Business Architecture&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=23;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="617" y="78" width="387" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Business capability boundary view: MDM is the parent capability; PIM is an e-commerce-oriented subset; CDL-MDM Pipeline is a shared data channel." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="370" y="118" width="880" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="mdm_parent" value="&lt;b style=&quot;font-size:18px&quot;&gt;MDM&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;企业级产品主数据治理与产品信息能力边界&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e6;strokeColor=#d6b656;strokeWidth=4;shadow=1;fontSize=14;verticalAlign=top;align=left;spacingTop=16;spacingLeft=18;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="80" y="225" width="494" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="mdm_definition" value="&lt;b&gt;MDM Definition&lt;/b&gt;&lt;br&gt;&lt;br&gt;MDM 是企业产品主数据的权威能力域，负责定义稳定、共享、可治理的产品 Golden Record。它覆盖产品基础属性、主数据标准、质量治理、产品层级、标识关系和对下游消费的数据口径。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=12;align=left;verticalAlign=top;spacing=12;" parent="1" vertex="1">
+          <mxGeometry x="120" y="296" width="420" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="mdm_core" value="&lt;b&gt;Core MDM Capabilities&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Product Golden Record&lt;br&gt;• GTIN / product identifier governance&lt;br&gt;• Brand, category, package and base attributes&lt;br&gt;• Product hierarchy and relationship management&lt;br&gt;• Data standards, validation and stewardship&lt;br&gt;• Enterprise master data lifecycle governance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#d6b656;fontSize=12;align=left;verticalAlign=top;spacing=12;" parent="1" vertex="1">
+          <mxGeometry x="120" y="471" width="420" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="mdm_not" value="&lt;b&gt;MDM Boundary&lt;/b&gt;&lt;br&gt;&lt;br&gt;MDM 不直接变成电商运营发布系统；&lt;div&gt;平台标题、平台类目、店铺 URL、平台 SKU / SPU、上架状态等高频变化字段，不应全部压入 MDM 核心模型。&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;dashed=1;fontSize=12;align=left;verticalAlign=top;spacing=12;" parent="1" vertex="1">
+          <mxGeometry x="120" y="710" width="420" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline_channel" value="&lt;b style=&quot;font-size:15px&quot;&gt;MDM Pipeline&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px&quot;&gt;Shared Data Transmission Channel / Data Pipeline — not a standalone business system&lt;/span&gt;&lt;br&gt;作为 MDM 与 PIM 共用的数据管道，承载主数据标准化传输、数据质量校验、字段契约、版本和分发治理。它是通道，不是与 MDM / PIM 平级的系统。&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=3;fontSize=12;align=center;verticalAlign=top;spacing=10;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="616" y="650" width="890" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline_cap_1" value="Data Transmission" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4eef8;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="646" y="754" width="140" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline_cap_2" value="Standardization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4eef8;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="806" y="754" width="140" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline_cap_3" value="Quality Check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4eef8;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="966" y="754" width="140" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline_cap_4" value="Data Contract" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4eef8;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1126" y="754" width="140" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="pipeline_cap_5" value="Version &amp;amp; Distribution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4eef8;strokeColor=#9673a6;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1296" y="754" width="180" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_subset" value="&lt;b style=&quot;font-size:17px&quot;&gt;PIM&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;font-size:12px&quot;&gt;MDM 下的电商产品信息扩展能力 / Channel Product Hub&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef7ee;strokeColor=#82b366;strokeWidth=4;shadow=1;fontSize=13;verticalAlign=top;align=left;spacingTop=14;spacingLeft=16;arcSize=8;" parent="1" vertex="1">
+          <mxGeometry x="616" y="290" width="890" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_definition" value="&lt;b&gt;PIM Definition&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;PIM 不是与 MDM 并列的企业主数据系统，而是 MDM 能力域内面向电商渠道的子集能力。它基于 MDM 的产品主数据，管理渠道商品表达、渠道字段适配、上架准备、平台结果回流和映射治理。&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=12;align=left;verticalAlign=top;spacing=10;" parent="1" vertex="1">
+          <mxGeometry x="635" y="450" width="400" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_cap_1" value="Product Structuring&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;Outter ID / Line Up / Sub Product / GTIN Short&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff8ef;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1076" y="345" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_cap_2" value="Channel Product Model&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;平台类目 / 渠道属性 / 店铺维度 / 模板规则&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff8ef;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1286" y="345" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_cap_3" value="Content Enrichment&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;商品标题 / 短名 / 卖点 / 人工修正&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff8ef;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1076" y="420" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_cap_4" value="Channel Readiness&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;上传模板 / 渠道校验 / 发布准备&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff8ef;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1286" y="420" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_cap_5" value="Platform Feedback Mapping&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;SKU / SPU / URL / 上架状态 / GTIN↔Outter ID 映射&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff8ef;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1076" y="495" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="pim_cap_6" value="Light Asset Reference&lt;br&gt;&lt;span style=&quot;font-size:10px&quot;&gt;图片要求 / 素材引用；不建设完整 DAM&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff8ef;strokeColor=#82b366;fontSize=11;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1286" y="495" width="190" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="summary_mdm" value="&lt;b&gt;Golden PIPE&lt;/b&gt;&lt;br&gt;MDM 是父级能力域，PIM 是其中面向电商渠道的产品信息子集。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=3;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="80" y="925" width="330" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="summary_pipeline" value="&lt;b&gt;CDL-MDM&lt;/b&gt;&lt;br&gt;它是 MDM / PIM 共用的数据管道，不是独立系统。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=3;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="440" y="925" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="summary_pim" value="&lt;b&gt;PIM&lt;/b&gt;&lt;br&gt;聚焦渠道商品表达、适配、准备、回流映射；不替代 MDM 核心主数据治理。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=3;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="830" y="925" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="summary_no_flow" value="&lt;b&gt;Diagram Intent&lt;/b&gt;&lt;br&gt;业务架构能力边界图用集成。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12;align=center;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="1280" y="925" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="of-H-SvO_nYQ9EO4W5UX-2" value="&lt;b style=&quot;text-align: left; font-size: 18px;&quot;&gt;MDM Platform&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="205" width="129" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

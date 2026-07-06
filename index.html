@@ -1,0 +1,1133 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDM Guidebook - 平台交接文档</title>
+    <style>
+        /* 
+        Design Decisions:
+        - Narrative Role: Hero Dashboard（主角）- 项目全景指挥中心
+        - Viewing Distance: 1-2m 笔记本/投屏双场景
+        - Visual Temperature: 沉稳权威 + 数据驱动（技术领导力）
+        - Capacity: 高信息密度但层次分明
+        - Aesthetic: 信息建筑派 + 现代 Project Management - 数据可视化 + 专业克制
+        - Key Differentiation: 甘特图 + 项目卡片 + 立体分区 = 记住「那个有甘特图的交接页」
+        */
+        
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --accent: #0ea5e9;
+            --urgent: #dc2626;
+            --urgent-bg: #fef2f2;
+            --ongoing: #f59e0b;
+            --ongoing-bg: #fffbeb;
+            --complete: #059669;
+            --bg: #ffffff;
+            --bg-page: #f8fafc;
+            --bg-elevated: #ffffff;
+            --border: #e2e8f0;
+            --border-strong: #cbd5e1;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-page);
+            font-size: 15px;
+        }
+        
+        /* Hero Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
+        .stats-bar {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.85;
+            margin-top: 0.25rem;
+        }
+        
+        /* Main Content */
+        main {
+            padding-bottom: 4rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Section Cards */
+        .section {
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        
+        .section:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-2px);
+        }
+        
+        .section-header {
+            padding: 1.5rem 1.75rem;
+            background: var(--bg-page);
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .section-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.3px;
+        }
+        
+        .section-body {
+            padding: 1.5rem 1.75rem;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.375rem 0.875rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-urgent {
+            background: var(--urgent-bg);
+            color: var(--urgent);
+            border: 1px solid #fecaca;
+        }
+        
+        .badge-ongoing {
+            background: var(--ongoing-bg);
+            color: var(--ongoing);
+            border: 1px solid #fde68a;
+        }
+        
+        .badge-info {
+            background: #eff6ff;
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+        }
+        
+        /* Status Badges */
+        .badge-testing {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+        
+        .badge-waiting {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fcd34d;
+        }
+        
+        .badge-dev {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+        
+        .badge-pending {
+            background: #f3f4f6;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+        }
+        
+        .badge-profile {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+        
+        .badge-manager {
+            background: #fae8ff;
+            color: #86198f;
+            border: 1px solid #f0abfc;
+        }
+        
+        .badge-resource {
+            background: #e0e7ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+        }
+        
+        .badge-resource-self {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+            font-weight: 600;
+        }
+        
+        /* Button */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg);
+            color: var(--primary);
+            border: 1px solid var(--border-strong);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Project Cards */
+        .project-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.625rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.875rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        
+        .meta-label {
+            font-weight: 500;
+        }
+        
+        .deadline-urgent {
+            color: var(--urgent);
+            font-weight: 600;
+        }
+        
+        /* Gantt Chart */
+        .gantt-container {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #fafbfc;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .gantt-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .gantt-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .gantt-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .gantt-label {
+            font-size: 0.8125rem;
+            color: var(--text);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .gantt-timeline {
+            height: 32px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gantt-bar {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            padding: 0 0.5rem;
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(30,64,175,0.3);
+        }
+        
+        .gantt-bar.urgent {
+            background: linear-gradient(90deg, var(--urgent) 0%, #f87171 100%);
+            box-shadow: 0 2px 4px rgba(220,38,38,0.3);
+        }
+        
+        /* Nav Lists */
+        .nav-list {
+            list-style: none;
+        }
+        
+        .nav-item {
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-item:hover {
+            border-left-color: var(--primary);
+            background: var(--bg-page);
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 0.625rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9375rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        /* Knowledge Grid */
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .knowledge-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+        
+        .knowledge-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+            border-color: var(--primary-light);
+        }
+        
+        .knowledge-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+        }
+        
+        .knowledge-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        
+        .knowledge-links {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+        
+        .knowledge-links li {
+            margin-bottom: 0.375rem;
+        }
+        
+        .knowledge-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+        
+        .knowledge-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            background: var(--bg-elevated);
+            border-radius: 8px 8px 0 0;
+            padding: 0.5rem 0.5rem 0;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            bottom: -2px;
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary);
+            background: rgba(30, 64, 175, 0.05);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .tab-pane {
+            background: var(--bg-elevated);
+            border-radius: 0 0 8px 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            border-top: none;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .gantt-row {
+                grid-template-columns: 120px 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            .stats-bar {
+                gap: 1.5rem;
+            }
+            .knowledge-grid {
+                grid-template-columns: 1fr;
+            }
+            .gantt-row {
+                grid-template-columns: 1fr;
+            }
+            .gantt-timeline {
+                grid-column: 1 / -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>MDM Guidebook</h1>
+            <p class="subtitle">主数据管理平台 · 技术交接文档中心</p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-value">14</span>
+                    <span class="stat-label">高优先级项目</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">规划项目</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">知识模块</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-btn" onclick="switchTab('high-priority')">
+                🔥 高优先级项目
+            </button>
+            <button class="tab-btn" onclick="switchTab('planning')">
+                🚀 规划中项目
+            </button>
+            <button class="tab-btn" onclick="switchTab('knowledge')">
+                📚 知识库
+            </button>
+            <button class="tab-btn" onclick="switchTab('handover')">
+                📋 交接计划
+            </button>
+        </div>
+        
+        <!-- High Priority Projects Tab -->
+        <div id="high-priority" class="tab-content">
+            <div class="tab-pane">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text);">高优先级项目</h2>
+                    <a href="./gantt.html" class="btn-secondary">
+                        📅 查看时间线
+                    </a>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <!-- 左列：7/15及之前 -->
+                    <div>
+                        <h3 style="font-size: 0.9375rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);">
+                            ⏰ 7/15及之前
+                        </h3>
+                    
+                    <!-- Data Access Simplification -->
+                    <a href="./viewer.html?file=./[urgent] current-project/data-access-simplification.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">Data Access Simplification</div>
+                                <span class="deadline-urgent">⏰ 7/7 | Addition:7/17</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-waiting">待上线</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-manager">Manager (Not Specific)</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">Vendor CAB</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Haoran · 技术栈: Java, JavaScript
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- PBI Refresh -->
+                    <a href="./viewer.html?file=./[urgent] current-project/pbi-refresh.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">Power BI Refresh</div>
+                                <span class="deadline-urgent">⏰ 7/14</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-testing">SIT 测试中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Data Engineering, BIE</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource-self">自己</span>
+                                <span class="badge badge-resource">CAB</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Haoran
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Global Hierarchy -->
+                    <a href="./viewer.html?file=./[urgent] current-project/global-hierarchy.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">Global 5005 Hierarchy</div>
+                                <span class="deadline-urgent">⏰ 7/14</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-dev">Additional 需求开发</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Data Product Owner</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">Vendor CAB</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Songjun
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- PIM Phase 2 -->
+                    <a href="./viewer.html?file=./[urgent] current-project/pim-phase2.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">PIM Phase 2</div>
+                                <span class="deadline-urgent">⏰ 7/14</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-testing">SIT 测试中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">DATA PRODUCT ONWER, App Manager</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">CAB + Vendor</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Haoran
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- Local Hierarchy -->
+                    <a href="./viewer.html?file=./[urgent] current-project/local-hierarchy.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">Local Hierarchy</div>
+                                <span class="deadline-urgent">⏰ 7/14</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-dev">Additional 需求开发</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-manager">Manager (Not Specific)</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">Vendor</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Songjun · Biz: Chengheng
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- DSTS & FGOI -->
+                    <a href="./viewer.html?file=./[urgent] current-project/dsts.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">DSTS & FGOI</div>
+                                <span class="deadline-urgent">⏰ 7/10</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-testing">UAT 测试中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-manager">Manager (Not Specific)</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">Vendor</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Hanlu · Biz: Yuying
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- SK-II & One Code 数据出海 -->
+                    <a href="./viewer.html?file=./[urgent] current-project/skii&onecode-share-to-global.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">SK-II & One Code 数据出海</div>
+                                <span class="deadline-urgent">⏰ SK-II:7/7 | OneCode:7/20</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-testing">SK-II:UAT</span>
+                                <span class="badge badge-dev">OC:配置中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Data Product Owner</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource-self">自己</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                技术栈: SQL, Databricks
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- SMILE HHTW -->
+                    <a href="./viewer.html?file=./[urgent] current-project/smile-hhtw.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">SMILE - 香港台湾</div>
+                                <span class="deadline-urgent">⏰ 7/7</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-waiting">待上线</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Manager (Not Specific)</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Kaili · Biz: Sanchez, Fran
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                    
+                    <!-- 右列：7/15之后 -->
+                    <div>
+                        <h3 style="font-size: 0.9375rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border);">
+                            📅 7/15之后
+                        </h3>
+                    
+                    <!-- CCAP to RPA -->
+                    <a href="./viewer.html?file=./[urgent] current-project/ccap-to-rpa.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">CCAP to RPA</div>
+                                <span class="deadline-urgent">⏰ 7/17</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-testing">联调测试中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-manager">Manager (Not Specific)</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">Vendor (Accural PO)</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Haoran
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- ASK IMDO -->
+                    <a href="./viewer.html?file=./[urgent] current-project/ask-imdo-production.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">ASK IMDO (Go Production)</div>
+                                <span class="deadline-urgent">⏰ 7/31</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-waiting">等待上线安排</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Application Manager</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Erica Xie · 技术栈: Python, JavaScript
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- CNN3 迁移 -->
+                    <a href="./viewer.html?file=./[urgent] current-project/cnn3-migration.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">CNN3 迁移</div>
+                                <span class="deadline-urgent">⏰ CDL:7/31 | GP:8/15</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-pending">梳理资源中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">App Manager, DATA PRODUCT ONWER</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Vicky Huang · 技术栈: Java, JS, Python, SQL
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- 产品 ETL 简化 -->
+                    <a href="./viewer.html?file=./[urgent] current-project/golden-pipe-product-etl-transform.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">产品 ETL 简化</div>
+                                <span class="deadline-urgent">⏰ 7/31</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-dev">开发中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Data Product Owner</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource">CAB</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Haoran · 技术栈: SQL, Python
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- POS Product - HK/TW -->
+                    <a href="./viewer.html?file=./[urgent] current-project/pos-product-hktw.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">POS Product - HK/TW</div>
+                                <span class="deadline-urgent">⏰ 8/15</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-dev">Vendor 开发中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-profile">Data Engineering, DATA PRODUCT ONWER</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">开发资源:</span>
+                                <span class="badge badge-resource-self">自己</span>
+                                <span class="badge badge-resource">+ Vendor</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Dervis · 技术栈: Python, JS, Java, SQL
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <!-- GDSN Vendor Code -->
+                    <a href="./viewer.html?file=./[urgent] current-project/gdsn-vendor-code.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-name">GDSN Vendor Code</div>
+                                <span class="deadline-urgent">⏰ Q1 (9/30)</span>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; margin-top: 0.625rem; flex-wrap: wrap; align-items: center;">
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;">状态:</span>
+                                <span class="badge badge-pending">TPRM 流程中</span>
+                                <span style="font-size: 0.8125rem; color: var(--text-muted); font-weight: 500; margin-left: 0.25rem;">Profile:</span>
+                                <span class="badge badge-manager">Manager (Not Specific)</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-muted);">
+                                PO: Erica · 非技术项目
+                            </div>
+                        </div>
+                    </a>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Planning Projects Tab -->
+        <div id="planning" class="tab-content">
+            <div class="tab-pane">
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">规划中项目</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                    <a href="./viewer.html?file=./ongoing(planning)-project/ai-ops-mdm.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">AI Ops MDM</div>
+                        </div>
+                    </a>
+                    <a href="./viewer.html?file=./ongoing(planning)-project/ai-prd-mdm.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">AI PRD MDM</div>
+                        </div>
+                    </a>
+                    <a href="./viewer.html?file=./ongoing(planning)-project/cdl-gia.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">CDL GIA 项目</div>
+                        </div>
+                    </a>
+                    <a href="./viewer.html?file=./ongoing(planning)-project/gi-gia.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">GI GIA 项目</div>
+                        </div>
+                    </a>
+                    <a href="./viewer.html?file=./ongoing(planning)-project/golden-pipe-ng.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">Golden Pipe 新一代</div>
+                        </div>
+                    </a>
+                    <a href="./viewer.html?file=./ongoing(planning)-project/golden-pipe-transfom.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">Golden Pipe 转型</div>
+                        </div>
+                    </a>
+                    <a href="./viewer.html?file=./ongoing(planning)-project/mdm-ontology.md" style="text-decoration: none; color: inherit;">
+                        <div class="project-card">
+                            <div class="project-name">MDM 本体论</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Knowledge Base Tab -->
+        <div id="knowledge" class="tab-content">
+            <div class="tab-pane">
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">知识库</h2>
+                <div class="knowledge-grid">
+                    <!-- Authorization -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">🔐</div>
+                        <div class="knowledge-title">授权管理</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./authorization/intro.md">授权系统概述</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- CDL MDM -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">💾</div>
+                        <div class="knowledge-title">CDL MDM</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./cdl-mdm/intro.md">CDL MDM 概述</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- FinOps -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">💰</div>
+                        <div class="knowledge-title">FinOps</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./finops/intro.md">FinOps 概述</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- GDSN -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">🌐</div>
+                        <div class="knowledge-title">GDSN</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./gdsn/intro.md">GDSN 概述</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Golden Pipe -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">⚡</div>
+                        <div class="knowledge-title">Golden Pipe</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./golden-pipe/intro.md">Golden Pipe 概述</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- PIM -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">📦</div>
+                        <div class="knowledge-title">PIM 系统</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./pim/intro.md">PIM 概述</a></li>
+                            <li><a href="./viewer.html?file=./pim/gate-review/architecture.md">架构设计</a></li>
+                            <li><a href="./viewer.html?file=./pim/gate-review/requirement.md">需求文档</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- R&R -->
+                    <div class="knowledge-card">
+                        <div class="knowledge-icon">👥</div>
+                        <div class="knowledge-title">角色与职责</div>
+                        <ul class="knowledge-links">
+                            <li><a href="./viewer.html?file=./r&r/intro.md">R&R 概述</a></li>
+                            <li><a href="./viewer.html?file=./r&r/org-tree.md">组织架构</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Handover Plan Tab -->
+        <div id="handover" class="tab-content">
+            <div class="tab-pane">
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">交接计划</h2>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="./viewer.html?file=./handover/plan.md" class="nav-link">交接总计划</a>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
+                    <div style="font-weight: 600; color: var(--primary); margin-bottom: 0.75rem; font-size: 0.9375rem;">
+                        交接进度
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8125rem; margin-bottom: 0.25rem;">
+                                <span>文档完成度</span>
+                                <span style="font-weight: 600;">15%</span>
+                            </div>
+                            <div style="height: 8px; background: #dbeafe; border-radius: 4px; overflow: hidden;">
+                                <div style="height: 100%; width: 15%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.8125rem; margin-bottom: 0.25rem;">
+                                <span>知识转移</span>
+                                <span style="font-weight: 600;">5%</span>
+                            </div>
+                            <div style="height: 8px; background: #dbeafe; border-radius: 4px; overflow: hidden;">
+                                <div style="height: 100%; width: 5%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>MDM Platform Knowledge Base | 最后更新：2026-07-06</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Initialize first tab as active
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.tab-btn').classList.add('active');
+            document.querySelector('.tab-content').classList.add('active');
+        });
+    </script>
+</body>
+</html>
