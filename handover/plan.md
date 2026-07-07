@@ -14,8 +14,8 @@
 | 🔥 当前项目交接 | 0% | 待定 | 2026-07-31 |
 | 🚀 规划项目交接 | 0% | 待定 | 2026-08-15 |
 | 📚 相关知识整理 | 0% | 待定 | 2026-08-15 |
-| � 系统权限交接 | 0% | 待定 | 2026-08-15 |
-| �📋 整体交接进度 | 0% | 待定 | 2026-08-31 |
+| 🔐 系统权限交接 | 0% | 待定 | 2026-08-15 |
+| 📋 整体交接进度 | 0% | 待定 | 2026-08-31 |
 
 ---
 
@@ -65,7 +65,7 @@
 
 ## 🚀 二、规划中项目交接
 
-### 2.1 规划项目（7个）
+### 2.1 规划/Ongoing项目（18个）
 
 **交接内容：**
 - 项目背景与战略定位
@@ -74,14 +74,45 @@
 - 资源需求与预算评估
 - 后续推进计划
 
-**项目列表：**
-1. **AI Ops MDM** - AI 运维平台
-2. **AI PRD MDM** - AI 产品需求管理
-3. **CDL GIA 项目** - CDL Global Information Architecture
-4. **GI GIA 项目** - GI Global Information Architecture
-5. **Golden Pipe 新一代** - 下一代数据管道
-6. **Golden Pipe 转型** - 数据管道架构升级
-7. **MDM 本体论** - 主数据本体建模
+**项目列表（按类别）：**
+
+#### 💾 Data（5个）
+**🔄 Ongoing:**
+1. **MDM Serving/Subscribe** - 数据订阅和分发服务
+2. **MDM Data Operation** - 数据运营与质量管理
+
+**📋 Planning:**
+3. **MDM Ontology** - 主数据本体与知识图谱（Use case: Data Access, Skillset: SQL, Graph SQL）
+4. **10 Min Master Data Serving** - Sales 应用（GI, Sales Hub）数据服务
+5. **CDC Cluster Migration** - CDL MDM CDC 集群迁移降成本
+
+#### 📊 Management（5个）
+**🔄 Ongoing:**
+1. **PO Related** - 产品负责人相关工作
+2. **Vendor Management** - 供应商管理
+3. **FinOps** - 财务运营与成本管理
+4. **GI-GIA** - GI 年度审计支持
+
+**📋 Planning:**
+5. **CDL-GIA** - TISL 审计整改跟进
+
+#### 🤖 AI - Empower（3个）
+**🔄 Ongoing:**
+1. **MDM Agent** - Golden PIPE 后端能力打包为 Agent，让 PO 能快速 CICD，将原型实现为可直接 Vibe Coding 的服务
+
+**📋 Planning:**
+2. **AI Ops MDM** - AI 运维自动化（目标：节省 0.7 FTE）
+3. **AI PRD MDM** - AI 产品数据管理（目标：效率提升 20%）
+
+#### 🚀 Application（5个）
+**🔄 Ongoing:**
+1. **Change Management** - 变更管理（Golden PIPE, PIM）
+2. **Application Operation** - 应用运维（CICD, Troubleshooting）
+3. **Azure Resource Management** - Azure 云资源管理
+4. **Service Operation (GDSN)** - GDSN 服务运营
+
+**📋 Planning:**
+5. **Golden Pipe NG** - Golden Pipe 下一代架构升级
 
 ### 2.2 交接方式
 
@@ -90,7 +121,7 @@
 - [ ] 技术方案讨论
 - [ ] 资源规划说明
 
-**预计总时长：** 约 14 小时
+**预计总时长：** 约 32 小时 （因项目增加至18个）
 
 ---
 

@@ -199,6 +199,12 @@
             border: 1px solid #fde68a;
         }
         
+        .badge-planning {
+            background: #e0e7ff;
+            color: #4338ca;
+            border: 1px solid #c7d2fe;
+        }
+        
         .badge-info {
             background: #eff6ff;
             color: var(--primary);
@@ -592,8 +598,8 @@
                     <span class="stat-label">高优先级项目</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value">7</span>
-                    <span class="stat-label">规划项目</span>
+                    <span class="stat-value">18</span>
+                    <span class="stat-label">规划/Ongoing项目</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-value">7</span>
@@ -610,7 +616,7 @@
                 🔥 高优先级项目
             </button>
             <button class="tab-btn" onclick="switchTab('planning')">
-                🚀 规划中项目
+                🚀 规划/Ongoing项目
             </button>
             <button class="tab-btn" onclick="switchTab('knowledge')">
                 📚 知识库
@@ -949,43 +955,258 @@
         <!-- Planning Projects Tab -->
         <div id="planning" class="tab-content">
             <div class="tab-pane">
-                <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">规划中项目</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
-                    <a href="./viewer.html?file=./ongoing(planning)-project/ai-ops-mdm.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">AI Ops MDM</div>
-                        </div>
-                    </a>
-                    <a href="./viewer.html?file=./ongoing(planning)-project/ai-prd-mdm.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">AI PRD MDM</div>
-                        </div>
-                    </a>
-                    <a href="./viewer.html?file=./ongoing(planning)-project/cdl-gia.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">CDL GIA 项目</div>
-                        </div>
-                    </a>
-                    <a href="./viewer.html?file=./ongoing(planning)-project/gi-gia.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">GI GIA 项目</div>
-                        </div>
-                    </a>
-                    <a href="./viewer.html?file=./ongoing(planning)-project/golden-pipe-ng.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">Golden Pipe 新一代</div>
-                        </div>
-                    </a>
-                    <a href="./viewer.html?file=./ongoing(planning)-project/golden-pipe-transfom.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">Golden Pipe 转型</div>
-                        </div>
-                    </a>
-                    <a href="./viewer.html?file=./ongoing(planning)-project/mdm-ontology.md" style="text-decoration: none; color: inherit;">
-                        <div class="project-card">
-                            <div class="project-name">MDM 本体论</div>
-                        </div>
-                    </a>
+                <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 1.5rem;">规划/Ongoing项目（18项）</h2>
+                
+                <!-- Data Category -->
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">💾</span> Data
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                        <!-- MDM Serving/Subscribe (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/mdm-serving-subscribe.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">MDM Serving/Subscribe</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Data Product Owner</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- MDM Data Operation (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/mdm-data-operation.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">MDM Data Operation</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Data Product Owner</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- MDM Ontology (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/mdm-ontology.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">MDM Ontology</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Data Product Owner</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- 10 Min Master Data Serving (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/10min-master-data-serving.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">10 Min Master Data Serving</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Data Product Owner</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- CDC Cluster Migration (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/cdl-mdm-cdc-migration.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">CDC Cluster Migration</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Data Product Owner</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Application Category -->
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">🚀</span> Application
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                        <!-- Change Management (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/change-management.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">Change Management</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Application Operation (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/application-operation.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">Application Operation</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Azure Resource Management (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/azure-resource-management.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">Azure Resource Management</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Service Operation (GDSN) (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/service-operation-gdsn.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">SAAS Operation (GDSN)</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Golden Pipe NG (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/golden-pipe-ng.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">Golden Pipe NG</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                                <!-- Management Category -->
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">📊</span> Management
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                        <!-- PO Related (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/po-related.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">PO Related</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-manager" style="font-size: 0.6875rem;">Manager: General (Not Specific)</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Vendor Management (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/vendor-management.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">Vendor Management</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-manager" style="font-size: 0.6875rem;">Manager: General (Not Specific)</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- FinOps (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/finops.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">FinOps</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-manager" style="font-size: 0.6875rem;">Manager: General (Not Specific)</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- GI-GIA (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/gi-gia.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">GI-GIA</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-manager" style="font-size: 0.6875rem;">Manager: General (Not Specific)</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- CDL-GIA (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/cdl-gia.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">CDL-GIA</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-manager" style="font-size: 0.6875rem;">Manager: General (Not Specific)</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AI Category -->
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">🤖</span> AI - Empower
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem;">
+                        <!-- MDM Agent (Ongoing) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/mdm-agent.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">MDM Agent</div>
+                                    <span class="badge badge-ongoing">🔄 Ongoing</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- AI Ops MDM (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/ai-ops-mdm.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">AI Ops MDM</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- AI PRD MDM (Planning) -->
+                        <a href="./viewer.html?file=./ongoing(planning)-project/ai-prd-mdm.md" style="text-decoration: none; color: inherit;">
+                            <div class="project-card">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                                    <div class="project-name">AI PRD MDM</div>
+                                    <span class="badge badge-planning">📋 Planning</span>
+                                </div>
+                                <div style="margin-top: 0.5rem;">
+                                    <span class="badge badge-profile" style="font-size: 0.6875rem;">Profile: Application Manager</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
