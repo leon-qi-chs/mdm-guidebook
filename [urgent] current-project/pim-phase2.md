@@ -6,8 +6,8 @@
 |---------|------|
 | **Business Owner** | Guo Na |
 | **Product Owner** | Haoran |
-| **截止日期** | 2026/7/14 |
-| **当前状态** | SIT 测试中 |
+| **目标 Release** | 7 月底 (end of Jul) |
+| **当前状态** | 数据测试中 (In data testing) |
 | **优先级** | 🔴 High（紧急） |
 
 ## 团队与资源

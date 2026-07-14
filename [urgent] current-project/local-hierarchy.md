@@ -6,9 +6,11 @@
 |---------|------|
 | **Business Owner** | Songjun |
 | **Product Owner** | Nicolas |
-| **截止日期** | 2026/7/14 |
-| **当前状态** | Additional 需求开发中 |
+| **目标 Release** | 7 月中 (Mid of Jul) |
+| **当前状态** | 测试中 (In testing) |
 | **优先级** | 🔴 High（紧急） |
+
+> **说明**：DSBP 数据自动生成 Local Hierarchy。
 
 ## 团队与资源
 
